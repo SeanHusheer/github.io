@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Alpha — Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #333;
+      background: #fff;
+    }
+
+    a { color: #2a6496; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+      padding: 0 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-logo { padding: 18px 0; }
+    .site-logo a {
+      font-family: 'Lora', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #222;
+      text-decoration: none;
+    }
+
+    .site-nav { display: flex; list-style: none; }
+    .site-nav li a {
+      display: block;
+      padding: 24px 16px;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+      color: #444;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .site-nav li a:hover { color: #2a6496; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 30px 0;
+      font-size: .8rem;
+      color: #888;
+    }
+    .breadcrumb a { color: #2a6496; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* ── PAGE WRAP ── */
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 36px 30px 80px;
+    }
+
+    /* ── HERO IMAGE ── */
+    .project-hero {
+      width: 100%;
+      background: #e0e0e0;
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+
+    .project-hero img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+    }
+
+    .hero-placeholder {
+      width: 100%;
+      height: 400px;
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    /* ── TWO-COL LAYOUT ── */
+    .project-layout {
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+    }
+
+    .project-main { flex: 1; min-width: 0; }
+    .project-sidebar { flex-shrink: 0; width: 240px; }
+
+    /* ── MAIN CONTENT ── */
+    .project-main h1 {
+      font-family: 'Lora', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 6px;
+    }
+
+    .project-type {
+      font-size: .85rem;
+      color: #888;
+      font-style: italic;
+      margin-bottom: 28px;
+    }
+
+    .project-main h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #333;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+
+    .project-main p { margin-bottom: 14px; color: #444; }
+
+    .project-main pre {
+      background: #f5f5f5;
+      border-left: 3px solid #2a6496;
+      padding: 16px 20px;
+      font-size: .8rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin: 20px 0;
+      font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+    }
+
+    .project-main code {
+      background: #f5f5f5;
+      padding: .1em .35em;
+      font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+      font-size: .85em;
+    }
+
+    /* ── IMAGE GALLERY ── */
+    .project-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 28px 0;
+    }
+
+    .gallery-img {
+      background: #e8e8e8;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #aaa;
+      overflow: hidden;
+    }
+
+    .gallery-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── SIDEBAR ── */
+    .project-sidebar h3 {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 10px;
+      margin-top: 28px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .project-sidebar h3:first-child { margin-top: 0; }
+
+    .project-sidebar ul { list-style: none; }
+    .project-sidebar ul li {
+      font-size: .82rem;
+      padding: 5px 0;
+      border-bottom: 1px solid #f0f0f0;
+      color: #444;
+    }
+    .project-sidebar ul li:last-child { border-bottom: none; }
+
+    .project-sidebar a.btn {
+      display: block;
+      background: #2a6496;
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 8px;
+      transition: background .2s;
+    }
+    .project-sidebar a.btn:hover { background: #1e4d73; text-decoration: none; }
+    .project-sidebar a.btn.secondary {
+      background: #fff;
+      color: #2a6496;
+      border: 1px solid #2a6496;
+    }
+    .project-sidebar a.btn.secondary:hover { background: #f0f6fc; }
+
+    /* ── PREV/NEXT ── */
+    .project-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 60px;
+      padding-top: 28px;
+      border-top: 1px solid #e0e0e0;
+      gap: 20px;
+    }
+
+    .project-nav a {
+      font-size: .82rem;
+      color: #2a6496;
+    }
+
+    .project-nav a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: #222;
+      color: #aaa;
+      padding: 40px 30px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .footer-col h4 {
+      font-size: .8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { font-size: .82rem; margin-bottom: 7px; }
+    .footer-col ul li a { color: #aaa; }
+    .footer-col ul li a:hover { color: #fff; text-decoration: none; }
+    .footer-col p { font-size: .82rem; margin-bottom: 7px; }
+    .footer-col a { color: #aaa; }
+    .footer-col a:hover { color: #fff; }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 32px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      font-size: .75rem;
+      color: #666;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      .project-layout { flex-direction: column; }
+      .project-sidebar { width: 100%; }
+      .project-gallery { grid-template-columns: 1fr; }
+      .site-nav li a { padding: 18px 10px; font-size: .75rem; }
+    }
+
+    @media (max-width: 520px) {
+      .site-header { flex-direction: column; align-items: flex-start; }
+      .site-nav { flex-wrap: wrap; }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-logo"><a href="index.html">Your Name</a></div>
+  <nav>
+    <ul class="site-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="https://github.com/yourusername" target="_blank">GitHub</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a> &rsaquo; <a href="index.html#projects">Projects</a> &rsaquo; Project Alpha
+</div>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <!-- Replace with: <img src="assets/project-alpha-hero.jpg" alt="Project Alpha"> -->
+    <div class="hero-placeholder">Project screenshot or hero image</div>
+  </div>
+
+  <div class="project-layout">
+
+    <!-- MAIN -->
+    <div class="project-main">
+      <h1>Project Alpha</h1>
+      <p class="project-type">Machine Learning · Python · 2024</p>
+
+      <h2>Overview</h2>
+      <p>
+        Start with the why. What problem were you solving and why did it matter to you? The best project descriptions are honest and specific — explain it like you're talking to a fellow developer over coffee.
+      </p>
+      <p>
+        Give enough context that someone unfamiliar with the problem space can understand the stakes. What existed before? What gap were you filling?
+      </p>
+
+      <h2>How it works</h2>
+      <p>
+        Walk through the approach at a level that's genuinely useful to another developer. What were the key decisions? What did you try that didn't work?
+      </p>
+
+      <pre><code># A representative snippet
+def process(input: str) -> dict:
+    result = model.predict(input)
+    return {"output": result, "confidence": model.score}</code></pre>
+
+      <div class="project-gallery">
+        <div class="gallery-img">Screenshot 1</div>
+        <div class="gallery-img">Screenshot 2</div>
+      </div>
+
+      <h2>Challenges</h2>
+      <p>
+        What was genuinely hard? What surprised you? Specifics here are what separate a good write-up from a great one. Talk about the tradeoffs you made and what you learned.
+      </p>
+
+      <h2>Results</h2>
+      <p>
+        Outcomes, metrics, user feedback. Even "I use this every day and it saves me an hour a week" is a meaningful result. Be concrete.
+      </p>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="project-sidebar">
+      <a class="btn" href="https://github.com/yourusername/project-alpha" target="_blank">View on GitHub</a>
+      <a class="btn secondary" href="#" target="_blank">Live Demo</a>
+
+      <h3>Stack</h3>
+      <ul>
+        <li>Python 3.12</li>
+        <li>PyTorch</li>
+        <li>FastAPI</li>
+        <li>Docker</li>
+        <li>PostgreSQL</li>
+      </ul>
+
+      <h3>Details</h3>
+      <ul>
+        <li>Year: 2024</li>
+        <li>Status: Active</li>
+        <li>License: MIT</li>
+      </ul>
+
+      <h3>Links</h3>
+      <ul>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Write-up</a></li>
+        <li><a href="#">Related project</a></li>
+      </ul>
+    </aside>
+
+  </div>
+
+  <div class="project-nav">
+    <a href="index.html">← Back to all projects</a>
+    <a href="project-2.html">Project Beta →</a>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p><a href="mailto:you@example.com">you@example.com</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#about">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow</h4>
+      <ul>
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Your Name · Built with GitHub Pages</div>
+</footer>
+
+</body>
+</html>

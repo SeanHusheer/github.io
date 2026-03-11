@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sean Husheer  — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #333;
+      background: #fff;
+    }
+
+    a { color: #2a6496; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    img { max-width: 100%; display: block; }
+
+    /* ── SITE HEADER ── */
+    .site-header {
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+      padding: 0 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-logo {
+      padding: 18px 0;
+    }
+
+    .site-logo a {
+      font-family: 'Lora', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #222;
+      text-decoration: none;
+    }
+
+    .site-nav {
+      display: flex;
+      gap: 0;
+      list-style: none;
+    }
+
+    .site-nav li a {
+      display: block;
+      padding: 24px 16px;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+      color: #444;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .site-nav li a:hover { color: #2a6496; text-decoration: none; }
+
+    /* ── PAGE WRAPPER ── */
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 50px 30px 80px;
+    }
+
+    /* ── PROFILE ── */
+    .profile {
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+      margin-bottom: 60px;
+    }
+
+    .profile-photo {
+      flex-shrink: 0;
+      width: 200px;
+    }
+
+    .profile-photo img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #eee;
+    }
+
+    /* Photo placeholder */
+    .photo-placeholder {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 4px solid #eee;
+    }
+
+    .photo-placeholder svg { opacity: .35; }
+
+    .profile-bio {}
+
+    .profile-bio h1 {
+      font-family: 'Lora', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 4px;
+    }
+
+    .profile-role {
+      font-size: .88rem;
+      color: #888;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .profile-bio h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 12px;
+      margin-top: 28px;
+    }
+
+    .profile-bio p {
+      margin-bottom: 14px;
+      color: #444;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 0 0 48px;
+    }
+
+    /* ── SECTION HEADING ── */
+    .section-heading {
+      font-family: 'Lora', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 24px;
+    }
+
+    /* ── PROJECTS GRID ── */
+    .projects-grid {
+      columns: 3;
+      column-gap: 16px;
+      margin-bottom: 60px;
+    }
+
+    .project-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      display: block;
+      position: relative;
+      overflow: hidden;
+      background: #f5f5f5;
+    }
+
+    .project-item img {
+      width: 100%;
+      display: block;
+      transition: transform .4s ease;
+    }
+
+    .project-item:hover img { transform: scale(1.03); }
+
+    .project-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity .3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 16px;
+    }
+
+    .project-item:hover .overlay { opacity: 1; }
+
+    .overlay-text {
+      color: #fff;
+    }
+
+    .overlay-text h3 {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .overlay-text p {
+      font-size: .75rem;
+      opacity: .85;
+    }
+
+    /* Placeholder tiles when no images */
+    .tile-placeholder {
+      width: 100%;
+      background: #e8e8e8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      letter-spacing: .08em;
+      color: #aaa;
+      text-transform: uppercase;
+    }
+
+    /* Vary heights for visual rhythm */
+    .tile-placeholder.h1 { height: 220px; }
+    .tile-placeholder.h2 { height: 300px; }
+    .tile-placeholder.h3 { height: 180px; }
+    .tile-placeholder.h4 { height: 260px; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: #222;
+      color: #aaa;
+      padding: 40px 30px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .footer-col h4 {
+      font-size: .8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li {
+      font-size: .82rem;
+      margin-bottom: 7px;
+    }
+
+    .footer-col ul li a { color: #aaa; text-decoration: none; }
+    .footer-col ul li a:hover { color: #fff; text-decoration: none; }
+
+    .footer-col p { font-size: .82rem; margin-bottom: 7px; }
+    .footer-col a { color: #aaa; }
+    .footer-col a:hover { color: #fff; }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 32px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      font-size: .75rem;
+      color: #666;
+      text-align: center;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      .profile { flex-direction: column; gap: 28px; }
+      .projects-grid { columns: 2; }
+      .site-nav li a { padding: 18px 10px; font-size: .75rem; }
+    }
+
+    @media (max-width: 520px) {
+      .site-header { flex-direction: column; align-items: flex-start; }
+      .site-nav { flex-wrap: wrap; }
+      .projects-grid { columns: 1; }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="site-logo">
+    <a href="index.html">Sean Husheer</a>
+  </div>
+  <nav>
+    <ul class="site-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="project-1.html">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://github.com/SeanHusheer" target="_blank">GitHub</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- PAGE CONTENT -->
+<div class="page-wrap">
+
+  <!-- PROFILE -->
+  <div class="profile">
+    <div class="profile-photo">
+      <!-- Replace with: <img src="assets/photo.jpg" alt="Your Name"> -->
+      <div class="photo-placeholder">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="24" r="12" stroke="#999" stroke-width="2"/>
+          <path d="M8 58c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="#999" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="profile-bio" id="about">
+      <h1>Sean Husheer</h1>
+      <p class="profile-role">Forest Ecologist &amp; Data Scientist</p>
+
+      <h2>New Zealand Forest Surveys Ltd</h2>
+      <!-- <p> -->
+      <!--   Write a few honest paragraphs about who you are and what you do. Talk about what draws you to software, the kinds of problems you love solving, and what makes your work yours. -->
+      <!-- </p> -->
+      <!-- <p> -->
+      <!--   You might mention where you're based, what you're currently working on, or what you did before. Keep it human — this is the part people actually read. -->
+      <!-- </p> -->
+      <!-- <p> -->
+      <!--   A third paragraph works well for talking about interests beyond code — writing, photography, hiking, whatever makes you a whole person and not just a list of technologies. -->
+      </p>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- PROJECTS -->
+  <h2 class="section-heading">Projects</h2>
+
+  <div class="projects-grid">
+
+    <a class="project-item" href="project-1.html">
+      <!-- Replace with: <img src="assets/Images/LeavingTarnBivRuahineFP.jpg" alt="Project Alpha"> -->
+      <div class="tile-placeholder h2">Project Alpha</div>
+      <div class="overlay">
+        <div class="overlay-text">
+          <h3>Alpine Plants</h3>
+          <p>Remeasurement of NZFS grassland monitoring plots · 2024</p>
+        </div>
+      </div>
+    </a>
+
+    <a class="project-item" href="project-2.html">
+      <div class="tile-placeholder h1">Project Beta</div>
+      <div class="overlay">
+        <div class="overlay-text">
+          <h3>Project Beta</h3>
+          <p>Web / TypeScript · 2024</p>
+        </div>
+      </div>
+    </a>
+
+    <a class="project-item" href="project-3.html">
+      <div class="tile-placeholder h3">Project Gamma</div>
+      <div class="overlay">
+        <div class="overlay-text">
+          <h3>Project Gamma</h3>
+          <p>CLI / Rust · 2023</p>
+        </div>
+      </div>
+    </a>
+
+    <a class="project-item" href="project-4.html">
+      <div class="tile-placeholder h4">Project Delta</div>
+      <div class="overlay">
+        <div class="overlay-text">
+          <h3>Project Delta</h3>
+          <p>Open Source / Go · 2023</p>
+        </div>
+      </div>
+    </a>
+
+    <a class="project-item" href="project-5.html">
+      <div class="tile-placeholder h2">Project Epsilon</div>
+      <div class="overlay">
+        <div class="overlay-text">
+          <h3>Project Epsilon</h3>
+          <p>Data Viz · 2022</p>
+        </div>
+      </div>
+    </a>
+
+    <a class="project-item" href="project-6.html">
+      <div class="tile-placeholder h1">Project Zeta</div>
+      <div class="overlay">
+        <div class="overlay-text">
+          <h3>Project Zeta</h3>
+          <p>Mobile · 2022</p>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer" id="contact">
+  <div class="footer-inner">
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p><a href="tel:+6421487433">+64 21 487 433</a></p>
+      <p><a href="mailto:sean.husheer@hush.com">sean.husheer@hush.com</a></p>
+    </div>
+
+    <!-- <div class="footer-col"> -->
+    <!--   <h4>Navigate</h4> -->
+    <!--   <ul> -->
+    <!--     <li><a href="index.html">Home</a></li> -->
+    <!--     <li><a href="project-1.html">Projects</a></li> -->
+    <!--     <li><a href="#about">About</a></li> -->
+    <!--     <li><a href="https://github.com/SeanHusheer" target="_blank">GitHub</a></li> -->
+    <!--   </ul> -->
+    <!-- </div> -->
+
+    <div class="footer-col">
+      <h4>Github repositories</h4>
+      <ul>
+        <li><a href="#">Molesworth</a></li>
+        <!-- <li><a href="#">LinkedIn</a></li> -->
+        <!-- <li><a href="#">Twitter / X</a></li> -->
+      </ul>
+    </div>
+
+  </div>
+  <div class="footer-bottom">
+    © 2026 Sean Husheer · Built with GitHub Pages
+  </div>
+</footer>
+
+</body>
+</html>
