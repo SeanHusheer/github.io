@@ -1,65 +1,92 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NZFS South and North Island Bases</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: #f0f0f0;
-      font-family: Arial, sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NZFS South and North Island Bases</title>
 
-    /* NAV styles */
-    nav {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      padding: 16px 32px;
-      background-color: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      z-index: 1000;
-    }
+<style>
+body {
+  margin: 0;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
 
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-size: 24px;
-      font-weight: bold;
-      margin-left: 24px;
-    }
+/* Center map on page */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-    /* Image styles */
-    main {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      padding-top: 80px; /* to avoid nav overlap */
-      box-sizing: border-box;
-    }
+/* Container for overlays */
+.map-container {
+  position: relative;
+  display: inline-block;
+}
 
-    img {
-      max-height: 90vh;
-      border: 2px solid #333;
-      border-radius: 8px;
-    }
-  </style>
+/* Main map image */
+.map-container img.map {
+  max-height: 90vh;
+  border: 2px solid #333;
+  border-radius: 8px;
+}
+
+/* Home button (top right) */
+.map-container nav {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.map-container nav a {
+  text-decoration: none;
+  color: white;
+  background: rgba(0,0,0,0.7);
+  font-size: 14px;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+.map-container nav a:hover {
+  background: rgba(0,0,0,0.9);
+}
+
+/* Logo overlay (top left) */
+.logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.logo img {
+  height: 50px;
+}
+</style>
 </head>
+
 <body>
 
-  <nav>
-    <a href="../index.html">Home</a>
-  </nav>
+<main>
+  <div class="map-container">
 
-  <main>
-    <img src="../assets/images/BasesNZFS.jpg" alt="Map image">
-  </main>
+    <!-- Logo -->
+    <div class="logo">
+      <img src="../assets/images/NZFSLogoRound.png" alt="Logo">
+    </div>
+
+    <!-- Home Button -->
+    <nav>
+      <a href="../index.html">Home</a>
+    </nav>
+
+    <!-- Map Image -->
+    <img class="map" src="../assets/images/BasesNZFS.jpg" alt="Map image">
+
+  </div>
+</main>
 
 </body>
 </html>
-
